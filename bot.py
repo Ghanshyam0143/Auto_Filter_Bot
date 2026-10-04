@@ -87,7 +87,11 @@ async def dreamxbotz_start():
     today = date.today()
     now = datetime.now(tz)
     current_time = now.strftime("%I:%M:%S %p")
-    await dreamxbotz.send_message(chat_id=LOG_CHANNEL, text=script.RESTART_TXT.format(temp.B_LINK, today, current_time))
+   try:
+       await dreamxbotz.send_message(chat_id=int(LOG_CHANNEL), text=script.RESTART_TXT.format(temp.B_LINK, today, current_time))
+   except Exception as e:
+       print(f"Failed to send restart message to log channel: {e}")
+
     app = web.AppRunner(await web_server())
     await app.setup()
     bind_address = "0.0.0.0"
