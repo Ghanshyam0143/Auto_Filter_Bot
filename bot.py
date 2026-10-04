@@ -1,4 +1,4 @@
-import plugins.listener  # noqa: F401
+Import plugins.listener  # noqa: F401
 import logging
 import logging.config
 from pyrogram import idle, __version__
@@ -87,10 +87,11 @@ async def dreamxbotz_start():
     today = date.today()
     now = datetime.now(tz)
     current_time = now.strftime("%I:%M:%S %p")
-   try:
-       await dreamxbotz.send_message(chat_id=int(LOG_CHANNEL), text=script.RESTART_TXT.format(temp.B_LINK, today, current_time))
-   except Exception as e:
-       print(f"Failed to send restart message to log channel: {e}")
+    
+    try:
+        await dreamxbotz.send_message(chat_id=int(LOG_CHANNEL), text=script.RESTART_TXT.format(temp.B_LINK, today, current_time))
+    except Exception as e:
+        print(f"Failed to send restart message to log channel: {e}")
 
     app = web.AppRunner(await web_server())
     await app.setup()
